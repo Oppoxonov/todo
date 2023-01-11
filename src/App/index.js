@@ -8,7 +8,10 @@ const App =()=>{
 const reduce =(state,action)=>{
     switch(action.type) {
         case 'add': 
-            return [...state, {id: Date.now(), name: action.payload.name, completed: false }];
+            if(action.payload.name.trim() !==''){
+                return [...state, {id: Date.now(), name: action.payload.name, completed: false }]
+                }
+            else return state;    
         case 'toggle':
             return state.map((todo)=>{
                 if(todo.id === action.payload.id) {
